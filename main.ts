@@ -30,7 +30,8 @@ function mr(prices: number[], i: number, k: number, a: number): number {
   return prices[i] + a * (m - prices[i]);
 }
 
-// Two-timescale blend of two mean-reversion pull strengths.
+// Two-timescale blend: pull toward a short-window mean (fast) and a long-window mean (slow),
+// each with its own strength, combined by weight w.
 function blend(prices: number[], i: number, k1: number, a1: number, k2: number, a2: number, w: number): number {
   const m1 = mean(prices, i - k1, i);
   const m2 = mean(prices, i - k2, i);
